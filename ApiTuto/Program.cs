@@ -1,3 +1,4 @@
+using System.Reflection;
 using ApiTuto.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAplicationServices();
 builder.Services.ConfigureCors();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
 builder.Services.AddDbContext<ApiTutoContext>(options =>
