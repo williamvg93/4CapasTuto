@@ -1,3 +1,4 @@
+using ApiTuto.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 
@@ -9,6 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddAplicationServices();
+builder.Services.ConfigureCors();
+
 
 builder.Services.AddDbContext<ApiTutoContext>(options =>
 {
@@ -40,6 +46,8 @@ using (var scope = app.Services.CreateScope())
         _logger.LogError(ex, "Ocurrio un error durante la migracion !!");
     }
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
