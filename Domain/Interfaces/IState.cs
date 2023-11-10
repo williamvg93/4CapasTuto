@@ -8,5 +8,4 @@ namespace Domain.Interfaces;
 
 public interface IState : IGenericRepository<State>
 {
-
 }

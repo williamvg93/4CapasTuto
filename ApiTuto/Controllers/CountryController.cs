@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiTuto.Dtos.Get;
+using ApiTuto.Dtos.Get.Querys;
 using ApiTuto.Dtos.Post;
 using AutoMapper;
 using Domain.Entities;
@@ -30,6 +31,16 @@ public class CountryController : BaseController
         var countries = await _unitOfWork.Countries.GetAllAsync();
         /* return Ok(countries); */
         return _mapper.Map<List<CountryDto>>(countries);
+    }
+
+    [HttpGet("CountryState")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<StateCountryDto>>> CountryState()
+    {
+        var countries = await _unitOfWork.Countries.GetStateCountry();
+        /* return Ok(countries); */
+        return _mapper.Map<List<StateCountryDto>>(countries);
     }
 
     [HttpGet("{id}")]

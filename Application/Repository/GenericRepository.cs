@@ -43,11 +43,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await _context.Set<T>().FindAsync(id);
     }
 
-    public Task<T> GetByIdAsync()
-    {
-        throw new NotImplementedException();
-    }
-
     public virtual void Remove(T entity)
     {
         _context.Set<T>().Remove(entity);
