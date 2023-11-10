@@ -8,5 +8,5 @@ namespace Domain.Interfaces;
 
 public interface ICity : IGenericRepository<City>
 {
-
+    Task<IEnumerable<City>> GetPersonByCity();
 }

@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using ApiTuto.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
@@ -16,6 +17,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAplicationServices();
 builder.Services.ConfigureCors();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 
 
 builder.Services.AddDbContext<ApiTutoContext>(options =>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiTuto.Dtos.Get;
 using ApiTuto.Dtos.Post;
+using ApiTuto.Dtos.Querys;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -45,6 +46,15 @@ public class CityController : BaseController
         }
 
         return _mapper.Map<CityDto>(city);
+    }
+
+    [HttpGet("CityCustomers")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<CityCustomerDto>>> CityCustomers()
+    {
+        var cities = await _unitOfWork.Cities.GetPersonByCity();
+        return _mapper.Map<List<CityCustomerDto>>(cities);
     }
 
     [HttpPost]

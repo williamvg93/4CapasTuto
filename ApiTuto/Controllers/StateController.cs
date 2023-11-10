@@ -49,9 +49,9 @@ public class StateController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<State>> Post(StateDto stateDto)
+    public async Task<ActionResult<State>> Post(StatePDto statePDto)
     {
-        var state = _mapper.Map<State>(stateDto);
+        var state = _mapper.Map<State>(statePDto);
 
         this._unitOfWork.States.Add(state);
         await _unitOfWork.SaveAsync();
@@ -60,8 +60,8 @@ public class StateController : BaseController
         {
             return BadRequest();
         }
-        stateDto.Id = state.Id;
-        return CreatedAtAction(nameof(Post), new { id = stateDto.Id }, stateDto);
+        statePDto.Id = state.Id;
+        return CreatedAtAction(nameof(Post), new { id = statePDto.Id }, statePDto);
     }
 
     [HttpPut("{id}")]

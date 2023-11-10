@@ -8,5 +8,7 @@ namespace Domain.Interfaces;
 
 public interface ICountry : IGenericRepository<Country>
 {
-    Task<List<Country>> GetStateCountry();
+    /* Task<IEnumerable<StateCountryDto>> GetStateCountry(); */
+    Task<IEnumerable<Country>> GetCountryStates();
+    Task<IEnumerable<Country>> GetCountryStatesCities();
 }
