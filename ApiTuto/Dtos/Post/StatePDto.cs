@@ -10,5 +10,4 @@ public class StatePDto
     public int Id { get; set; }
     public string Name { get; set; }
     public int IdCountryFk { get; set; }
-
 }
