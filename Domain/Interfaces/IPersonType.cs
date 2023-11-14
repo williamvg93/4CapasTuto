@@ -8,4 +8,5 @@ namespace Domain.Interfaces;
 
 public interface IPersonType : IGenericRepository<Persontype>
 {
+    Task<IEnumerable<Persontype>> GetCustomerPersonType();
 }

@@ -4,17 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiTuto.Dtos.Querys;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Persistence.Data;
 
 namespace ApiTuto.Controllers;
 
-public class DataLIstController : BaseController
+public class DataListController : BaseController
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public DataLIstController(IUnitOfWork unitOfWork, IMapper mapper)
+    public DataListController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -51,11 +53,13 @@ public class DataLIstController : BaseController
         return _mapper.Map<List<CityCustomerDto>>(dataList);
     }
 
-    /*     [HttpGet("CustomerTypePerson")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<CustomerTypePerDto>>> CustomerTypePerson()
-        {
-            customer = await _unitOfWork.PeopleTypes.GetAllAsync()
-        } */
+    [HttpGet("CustomerTypePerson")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<CustomerTypePerDto>>> CustomerTypePerson()
+    {
+        var customer = await _unitOfWork.PeopleTypes.GetCustomerPersonType();
+
+        return _mapper.Map<List<CustomerTypePerDto>>(customer);
+    }
 }

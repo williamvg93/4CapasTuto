@@ -30,10 +30,12 @@ public class MappingProfiles : Profile
         .ReverseMap();
         CreateMap<State, StatePDto>()
         .ReverseMap();
-        CreateMap<State, StateListCitiesDto>()
+        CreateMap<State, StateCitiesDto>()
         .ReverseMap();
 
         CreateMap<Persontype, PersonTypeDto>()
+        .ReverseMap();
+        CreateMap<Persontype, CustomerTypePerDto>()
         .ReverseMap();
 
         CreateMap<Customer, CustomerDto>()
