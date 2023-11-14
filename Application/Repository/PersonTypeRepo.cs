@@ -16,4 +16,5 @@ public class PersonTypeRepo : GenericRepository<Persontype>, IPersonType
     {
         _context = context;
     }
+
 }

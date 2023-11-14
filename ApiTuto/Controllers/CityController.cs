@@ -48,12 +48,25 @@ public class CityController : BaseController
         return _mapper.Map<CityDto>(city);
     }
 
+    [HttpGet("CityCustomersById/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<CityCustomerDto>>> CityCustomersById(int id)
+    {
+        var dataList = await _unitOfWork.Cities.GetPersonByCity(id);
+        if (dataList == null)
+        {
+            return NotFound();
+        }
+        return _mapper.Map<List<CityCustomerDto>>(dataList);
+    }
+
     [HttpGet("CityCustomers")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<CityCustomerDto>>> CityCustomers()
     {
-        var cities = await _unitOfWork.Cities.GetPersonByCity();
+        var cities = await _unitOfWork.Cities.GetCustomersForEachCity();
         return _mapper.Map<List<CityCustomerDto>>(cities);
     }
 

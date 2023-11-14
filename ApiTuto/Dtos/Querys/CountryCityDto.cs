@@ -9,5 +9,5 @@ public class CountryCityDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<StateListCitiesDto> States { get; set; }
+    public List<StateCitiesDto> States { get; set; }
 }

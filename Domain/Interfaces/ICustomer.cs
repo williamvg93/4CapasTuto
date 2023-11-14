@@ -8,5 +8,4 @@ namespace Domain.Interfaces;
 
 public interface ICustomer : IGenericRepository<Customer>
 {
-
 }

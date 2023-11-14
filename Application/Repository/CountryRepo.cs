@@ -18,20 +18,6 @@ public class CountryRepo : GenericRepository<Country>, ICountry
         _context = context;
     }
 
-    /* public async Task<IEnumerable<StateCountryDto>> GetStateCountry()
-    {
-        var countries = await _context.Countries.Include(d => d.States).ToListAsync(); 
-             return await _context.Set<Country>().Include(d => d.States.Select(s => s.Name)).Select(
-                    c => new StateCountryDto
-                    {
-                        IdCity = c.Id,
-                        CityName = c.Name,
-                        StateName = c.
-                    }
-
-                ).ToListAsync();
-    } */
-
     public async Task<IEnumerable<Country>> GetCountryStates()
     {
         return await _context.Countries
